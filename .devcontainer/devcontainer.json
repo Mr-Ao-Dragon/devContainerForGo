@@ -1,28 +1,44 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the
 // README at: https://github.com/devcontainers/templates/tree/main/src/go
 {
-	"name": "Go",
-	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
-	"image": "mcr.microsoft.com/devcontainers/go:1-1.22-bookworm",
-
-	// Features to add to the dev container. More info: https://containers.dev/features.
-	 "features": {
-
-     },
-
-	// Use 'forwardPorts' to make a list of ports inside the container available locally.
-	 "forwardPorts": [8080],
-
-	// Use 'postCreateCommand' to run commands after the container is created.
-	// "postCreateCommand": "go version",
-
-	// Configure tool-specific properties.
-  "customizations" : {
-    "jetbrains" : {
-      "backend" : "GoLand"
-    }
+  "name": "Go",
+  // Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
+  // "image": "mcr.microsoft.com/devcontainers/go:1-1.22-bookworm",
+  "dockerFile": "Dockerfile",
+  "remoteEnv": {
+    "PATH": "${containerEnv:PATH}:/opt/pip/bin",
+    "LOCAL_WORKSPACE_FOLDER": "${localWorkspaceFolder}"
   },
-
-	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
-	// "remoteUser": "root"
+  onCreateCommand: [
+    "pip config"
+  ],
+  // Features to add to the dev container. More info: https://containers.dev/features.
+  "features": {
+    "ghcr.io/akhildevelops/devcontainer-features/apt": {
+      "packages": "git,gpg,upx,shellcheck,shfmt"
+    },
+    "ghcr.io/deep-space-cartel/devcontainers-features/pip:1": {
+      "packages": "pre-commit",
+      "location": "/opt/pip/bin"
+    },
+    "ghcr.io/deep-space-cartel/devcontainers-features/starship:latest": {
+      "version": "latest"
+    },
+    "ghcr.io/bartventer/arch-devcontainer-features/docker-outside-of-docker": {}
+  },
+  // Use 'forwardPorts' to make a list of ports inside the container available locally.
+  "forwardPorts": [
+    8080
+  ],
+  // Use 'postCreateCommand' to run commands after the container is created.
+  // "postCreateCommand": "go version",
+  
+  // Configure tool-specific properties.
+  "customizations": {
+    "jetbrains": {
+      "backend": "GoLand"
+    }
+  }
+  // Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+  // "remoteUser": "root"
 }
