@@ -3,8 +3,7 @@
 {
   "name": "Go",
   // Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
-  // "image": "mcr.microsoft.com/devcontainers/go:1-1.22-bookworm",
-  "dockerFile": "./Dockerfile",
+  "image": "mcr.microsoft.com/devcontainers/go:1-1.23-bookworm",
   "remoteEnv": {
     "PATH": "${containerEnv:PATH}:/opt/pip/bin",
     "LOCAL_WORKSPACE_FOLDER": "${localWorkspaceFolder}"
@@ -14,13 +13,20 @@
     "GOPROXY": "https://goproxy.cn",
     "GO111MODULE": "ON"
   },
+  initializeCommand: [
+    ""
+  ],
+  onCreateCommand: [
+    "curl https://mirrors.ustc.edu.cn/repogen/conf/debian-https-4-bookworm >> /etc/apt/sources.list.d/debian.sources",
+    "apt update"
+  ],
   postStartCommand: [
     "gpg --batch --passphrase-file passphrase.passwd --import private-file.key"
   ],
   // Features to add to the dev container. More info: https://containers.dev/features.
   "features": {
     "ghcr.io/akhildevelops/devcontainer-features/apt": {
-      "packages": "git,gpg,upx,shellcheck,shfmt"
+      "packages": "git,gpg,upx,shellcheck,shfmt,gnupg2"
     },
     "ghcr.io/deep-space-cartel/devcontainers-features/pip:1": {
       "packages": "pre-commit",
@@ -37,7 +43,7 @@
   ],
   // Use 'postCreateCommand' to run commands after the container is created.
   // "postCreateCommand": "go version",
-  
+
   // Configure tool-specific properties.
   "customizations": {
     "jetbrains": {
