@@ -28,13 +28,13 @@
     "ghcr.io/akhildevelops/devcontainer-features/apt": {
       "packages": "git,gpg,upx,shellcheck,shfmt,gnupg2"
     },
-    "ghcr.io/deep-space-cartel/devcontainers-features/pip:1": {
-      "packages": "pre-commit",
+//    "ghcr.io/deep-space-cartel/devcontainers-features/pip:1": {
+//      "packages": "pre-commit",
       // "location": "/opt/pip/bin"
-    },
-    "ghcr.io/deep-space-cartel/devcontainers-features/starship:latest": {
-      "version": "latest"
-    },
+//    },
+//    "ghcr.io/deep-space-cartel/devcontainers-features/starship:latest": {
+//      "version": "latest"
+//    },
     "ghcr.io/bartventer/arch-devcontainer-features/docker-outside-of-docker": {}
   },
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
