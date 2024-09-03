@@ -4,13 +4,18 @@
   "name": "Go",
   // Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
   // "image": "mcr.microsoft.com/devcontainers/go:1-1.22-bookworm",
-  "dockerFile": "Dockerfile",
+  "dockerFile": "./Dockerfile",
   "remoteEnv": {
     "PATH": "${containerEnv:PATH}:/opt/pip/bin",
     "LOCAL_WORKSPACE_FOLDER": "${localWorkspaceFolder}"
   },
-  onCreateCommand: [
-    "pip config"
+  containerEnv: {
+    "DEBIAN_FRONTEND": "noninteractive",
+    "GOPROXY": "https://goproxy.cn",
+    "GO111MODULE": "ON"
+  },
+  postStartCommand: [
+    "gpg --batch --passphrase-file passphrase.passwd --import private-file.key"
   ],
   // Features to add to the dev container. More info: https://containers.dev/features.
   "features": {
