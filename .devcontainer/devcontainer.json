@@ -14,7 +14,7 @@
     "GO111MODULE": "ON"
   },
   initializeCommand: [
-    ""
+    "pip config set "
   ],
   onCreateCommand: [
     "curl https://mirrors.ustc.edu.cn/repogen/conf/debian-https-4-bookworm >> /etc/apt/sources.list.d/debian.sources",
@@ -30,7 +30,7 @@
     },
     "ghcr.io/deep-space-cartel/devcontainers-features/pip:1": {
       "packages": "pre-commit",
-      "location": "/opt/pip/bin"
+      // "location": "/opt/pip/bin"
     },
     "ghcr.io/deep-space-cartel/devcontainers-features/starship:latest": {
       "version": "latest"
